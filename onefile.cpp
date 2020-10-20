@@ -23,6 +23,9 @@ class BinImage
     int n, m;
 
 public:
+    int _n(){return n;}
+    int _m(){return m;}
+    int** _f(){return f;}
     BinImage() : f(NULL), n(0), m(0) {}
     BinImage(int a, int b, int fill) : n(a), m(b)
     {
@@ -91,12 +94,49 @@ public:
         BinImage tmp(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = f[i][j]*b(i,j);
+                tmp(i,j) = f[i][j]&b(i,j);
         return tmp;
     }
     BinImage& operator+(BinImage& b)
     {
-         
+        BinImage tmp(n,m,0);
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                tmp(i,j) = f[i][j]|b(i,j);
+        return tmp;
+    }
+    BinImage& operator*(int l)
+    {
+        BinImage tmp(n,m,0);
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                tmp(i,j) = f[i][j]&l;
+        return tmp;
+    }
+    BinImage& operator+(int l)
+    {
+        BinImage tmp(n,m,0);
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                tmp(i,j) = f[i][j]|l;
+        return tmp;
+    }
+    BinImage& operator!()
+    {
+        BinImage tmp(n,m,0);
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                tmp(i,j) = !(f[i][j]);
+        return tmp;
+    }
+    double coefficient()
+    {
+        int true_amount = 0;
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                if(f[i][j])
+                    true_amount += 1;
+        return (double)true_amount/(n*m);
     }
     //copy constructor
     BinImage(const BinImage &b);
@@ -105,6 +145,22 @@ public:
     BinImage(BinImage &&b);
     BinImage &operator=(BinImage &&b);
 };
+BinImage& operator*(int l, BinImage& b)
+{
+    BinImage tmp(b._n(),b._m(),0);
+    for(int i=0;i<b._n();i++)
+        for(int j=0;j<b._m();j++)
+            tmp(i,j) = b._f()[i][j]&l;
+    return tmp;
+}
+BinImage& operator+(int l, BinImage& b)
+{
+    BinImage tmp(b._n(),b._m(),0);
+    for(int i=0;i<b._n();i++)
+        for(int j=0;j<b._m();j++)
+            tmp(i,j) = b._f()[i][j]|l;
+    return tmp;
+}
 int main()
 {
     BinImage a;
