@@ -26,6 +26,13 @@ public:
     int _n(){return n;}
     int _m(){return m;}
     int** _f(){return f;}
+    void filling(int fill)
+    {
+        if(f!=NULL)
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < m; j++)
+                    f[i][j] = fill;
+    }
     BinImage() : f(NULL), n(0), m(0) {}
     BinImage(int a, int b, int fill) : n(a), m(b)
     {
@@ -65,15 +72,36 @@ public:
     }
     void output()
     {
+        // defining special characters
+        char lt(201);
+        char lb(200);
+        char rt(187);
+        char rb(188);
+        char vl(186);
+        char hl(205);
+        char tv(178);
+        char fv(176);
+        // head
+        std::cout << lt;
+        for (int j = 0; j < m; j++)
+            std::cout << hl;
+        std::cout << rt << std::endl;
+        // body
         for (int i = 0; i < n; i++)
         {
+            std::cout << vl;
             for (int j = 0; j < m; j++)
                 if (f[i][j] == 1)
-                    std::cout << "#";
+                    std::cout << tv;
                 else
-                    std::cout << ".";
-            std::cout << '\n';
+                    std::cout << fv;
+            std::cout << vl << std::endl;
         }
+        // bottom
+        std::cout << lb;
+        for (int j = 0; j < m; j++)
+            std::cout << hl;
+        std::cout << rb << std::endl;
     }
     ~BinImage()
     {
@@ -91,43 +119,43 @@ public:
     }
     BinImage& operator*(BinImage& b)
     {
-        BinImage tmp(n,m,0);
+        BinImage* tmp = new BinImage(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = f[i][j]&b(i,j);
-        return tmp;
+                (*tmp)(i,j) = f[i][j]&b(i,j);
+        return *tmp;
     }
     BinImage& operator+(BinImage& b)
     {
-        BinImage tmp(n,m,0);
+        BinImage* tmp = new BinImage(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = f[i][j]|b(i,j);
-        return tmp;
+                (*tmp)(i,j) = f[i][j]|b(i,j);
+        return *tmp;
     }
     BinImage& operator*(int l)
     {
-        BinImage tmp(n,m,0);
+        BinImage* tmp = new BinImage(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = f[i][j]&l;
-        return tmp;
+                (*tmp)(i,j) = f[i][j]&l;
+        return *tmp;
     }
     BinImage& operator+(int l)
     {
-        BinImage tmp(n,m,0);
+        BinImage* tmp = new BinImage(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = f[i][j]|l;
-        return tmp;
+                (*tmp)(i,j) = f[i][j]|l;
+        return *tmp;
     }
     BinImage& operator!()
     {
-        BinImage tmp(n,m,0);
+        BinImage* tmp = new BinImage(n,m,0);
         for(int i=0;i<n;i++)
             for(int j=0;j<m;j++)
-                tmp(i,j) = !(f[i][j]);
-        return tmp;
+                (*tmp)(i,j) = !(f[i][j]);
+        return *tmp;
     }
     double coefficient()
     {
@@ -147,26 +175,24 @@ public:
 };
 BinImage& operator*(int l, BinImage& b)
 {
-    BinImage tmp(b._n(),b._m(),0);
+    BinImage *tmp = new BinImage(b._n(),b._m(),0);
     for(int i=0;i<b._n();i++)
         for(int j=0;j<b._m();j++)
-            tmp(i,j) = b._f()[i][j]&l;
-    return tmp;
+            (*tmp)(i,j) = b._f()[i][j]&l;
+    return *tmp;
 }
 BinImage& operator+(int l, BinImage& b)
 {
-    BinImage tmp(b._n(),b._m(),0);
+    BinImage *tmp = new BinImage(b._n(),b._m(),0);
     for(int i=0;i<b._n();i++)
         for(int j=0;j<b._m();j++)
-            tmp(i,j) = b._f()[i][j]|l;
-    return tmp;
+            (*tmp)(i,j) = b._f()[i][j]|l;
+    return *tmp;
 }
 int main()
 {
     BinImage a;
     a.input();
-    a(0,0) = 1;
-    a(1,1) = 1;
     a.output();
     return 0;
 }
