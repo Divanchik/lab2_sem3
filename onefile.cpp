@@ -1,7 +1,14 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
-
+const char lt(201);
+const char lb(200);
+const char rt(187);
+const char rb(188);
+const char vl(186);
+const char hl(205);
+const char tv(178);
+const char fv(176);
 int count_char(char c, char *s)
 {
     int i = 0;
@@ -172,6 +179,31 @@ public:
     //move constructor
     BinImage(BinImage &&b);
     BinImage &operator=(BinImage &&b);
+
+    friend std::ostream& operator<< (std::ostream &out, const BinImage &image)
+    {
+        // head
+        std::cout << lt;
+        for (int j = 0; j < image.m; j++)
+            std::cout << hl;
+        std::cout << rt << std::endl;
+        // body
+        for (int i = 0; i < image.n; i++)
+        {
+            std::cout << vl;
+            for (int j = 0; j < image.m; j++)
+                if (image.f[i][j] == 1)
+                    std::cout << tv;
+                else
+                    std::cout << fv;
+            std::cout << vl << std::endl;
+        }
+        // bottom
+        std::cout << lb;
+        for (int j = 0; j < image.m; j++)
+            std::cout << hl;
+        std::cout << rb << std::endl;
+    }
 };
 BinImage& operator*(int l, BinImage& b)
 {
@@ -194,5 +226,6 @@ int main()
     BinImage a;
     a.input();
     a.output();
+    std::cout << a;
     return 0;
 }
