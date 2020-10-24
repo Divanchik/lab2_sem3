@@ -28,6 +28,12 @@ class BinImage
 {
     int **f;
     int n, m;
+    void delete_f()
+    {
+        for (int i = 0; i < n; i++)
+            free(f[i]);
+        free(f);
+    }
 
 public:
     int _n() const { return n; }
@@ -46,9 +52,7 @@ public:
         f = (int **)malloc(n * sizeof(int));
         for (int i = 0; i < n; i++)
             f[i] = (int *)malloc((m + 1) * sizeof(int));
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                f[i][j] = fill;
+        filling(fill);
     }
     void input()
     {
@@ -107,9 +111,7 @@ public:
     }
     ~BinImage()
     {
-        for (int i = 0; i < n; i++)
-            free(f[i]);
-        free(f);
+        delete_f();
     }
     // operators overload
     int &operator()(const int a, const int b) const
@@ -168,7 +170,7 @@ public:
                     true_amount += 1;
         return (double)true_amount / (n * m);
     }
-    //copy constructor
+    // copying constructor
     BinImage(const BinImage &b) : n(b._n()), m(b._m())
     {
         f = (int **)malloc(n * sizeof(int));
@@ -178,13 +180,17 @@ public:
             for (int j = 0; j < m; j++)
                 f[i][j] = b(i, j);
     }
+    // moving constructor
+    BinImage(BinImage &&b) : n(b._n()), m(b._m()), f(b.f)
+    {
+        b.f = nullptr;
+    }
+    // copying assignment operator overload
     BinImage &operator=(const BinImage &b)
     {
         if (&b == this)
             return *this;
-        for (int i = 0; i < n; i++)
-            free(f[i]);
-        free(f);
+        delete_f();
         f = (int **)malloc(n * sizeof(int));
         for (int i = 0; i < n; i++)
             f[i] = (int *)malloc((m + 1) * sizeof(int));
@@ -192,18 +198,18 @@ public:
             for (int j = 0; j < m; j++)
                 f[i][j] = b(i, j);
         return *this;
-
     }
-    //move constructor
-    BinImage(BinImage &&b): n(b._n()), m(b._m())
+    // moving assignment operator overload
+    BinImage &operator=(BinImage &&b)
     {
-        for (int i = 0; i < n; i++)
-            free(f[i]);
-        free(f);
+        if (&b == this)
+            return *this;
+        delete_f();
         f = b.f;
+        b.f = nullptr;
+        return *this;
     }
-    BinImage &operator=(BinImage &&b);
-
+    // output operator overload
     friend std::ostream &operator<<(std::ostream &out, const BinImage &image)
     {
         image.output();
@@ -214,7 +220,7 @@ BinImage operator*(const int l, const BinImage &b)
     BinImage tmp(b._n(), b._m(), 0);
     for (int i = 0; i < b._n(); i++)
         for (int j = 0; j < b._m(); j++)
-            tmp(i, j) = b._f()[i][j] & l;
+            tmp(i, j) = b(i, j) & l;
     return tmp;
 }
 BinImage operator+(const int l, const BinImage &b)
@@ -222,12 +228,10 @@ BinImage operator+(const int l, const BinImage &b)
     BinImage tmp(b._n(), b._m(), 0);
     for (int i = 0; i < b._n(); i++)
         for (int j = 0; j < b._m(); j++)
-            tmp(i, j) = b._f()[i][j] | l;
+            tmp(i, j) = b(i, j) | l;
     return tmp;
 }
 int main()
 {
-    BinImage a(4, 4, 1);
-    BinImage b(4, 4, 0);
     return 0;
 }
