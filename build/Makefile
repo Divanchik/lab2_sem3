@@ -110,6 +110,46 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named result
+
+# Build rule for target.
+result: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 result
+.PHONY : result
+
+# fast build rule for target.
+result/fast:
+	$(MAKE) -f CMakeFiles/result.dir/build.make CMakeFiles/result.dir/build
+.PHONY : result/fast
+
+onefile.o: onefile.cpp.o
+
+.PHONY : onefile.o
+
+# target to build an object file
+onefile.cpp.o:
+	$(MAKE) -f CMakeFiles/result.dir/build.make CMakeFiles/result.dir/onefile.cpp.o
+.PHONY : onefile.cpp.o
+
+onefile.i: onefile.cpp.i
+
+.PHONY : onefile.i
+
+# target to preprocess a source file
+onefile.cpp.i:
+	$(MAKE) -f CMakeFiles/result.dir/build.make CMakeFiles/result.dir/onefile.cpp.i
+.PHONY : onefile.cpp.i
+
+onefile.s: onefile.cpp.s
+
+.PHONY : onefile.s
+
+# target to generate assembly for a file
+onefile.cpp.s:
+	$(MAKE) -f CMakeFiles/result.dir/build.make CMakeFiles/result.dir/onefile.cpp.s
+.PHONY : onefile.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -118,6 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... result"
+	@echo "... onefile.o"
+	@echo "... onefile.i"
+	@echo "... onefile.s"
 .PHONY : help
 
 

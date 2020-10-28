@@ -839,7 +839,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Project"
+			"value" : "lab2_sem3"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1135,6 +1135,30 @@
 		},
 		{
 			"name" : "Project_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/dimadivan/lab2_sem3"
+		},
+		{
+			"name" : "lab2_sem3_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/dimadivan/lab2_sem3/build"
+		},
+		{
+			"name" : "lab2_sem3_SOURCE_DIR",
 			"properties" : 
 			[
 				{
