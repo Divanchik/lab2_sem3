@@ -11,7 +11,12 @@ const char vline(186);
 const char hline(205);
 const char value1(178);
 const char value0(249);
-int trace = 0;
+bool trace = false;
+void log(const char* s)
+{
+    if (trace)
+        std::cout << s;
+}
 // Returns string length.
 int strlen(const char *s)
 {
@@ -37,6 +42,7 @@ void int_input(int &a, const char *s)
     {
         cout << s << endl;
         fgets(buf, 10, stdin);
+        while (getchar() != '\n');
         for (int i = 0; i < strlen(buf); i++)
             if (find_char(buf[i], num) == -1)
             {
@@ -68,16 +74,16 @@ int int_in(const int n, const int a, const int b)
 class BinImage
 {
     // Image array.
-    int **f;
+    bool **f;
     int n, m;
     // Cache for amount of True values.
-    int prev_amount;
+    bool is_image_changed;
     // Cache for coefficient.
-    double prev_coefficient;
+    double cache_coefficient;
     // Delete image.
     void delete_f()
     {
-        if (f != nullptr)
+        if (!(_is_created()))
         {
             for (int i = 0; i < n; i++)
                 free(f[i]);
@@ -87,12 +93,16 @@ class BinImage
     // Create image.
     void create_f(int a, int b)
     {
-        f = (int **)malloc(a * sizeof(int));
-        for (int i = 0; i < a; i++)
-            f[i] = (int *)malloc(b * sizeof(int));
+        if (_is_created())
+            f = (bool **)malloc(a * sizeof(bool));
+            for (int i = 0; i < a; i++)
+                f[i] = (bool *)malloc(b * sizeof(bool));
     }
+    
+    
+public:
     // Returns amount of True values.
-    int count_1() const
+    int count_true() const
     {
         int z = 0;
         for (int i = 0; i < n; i++)
@@ -101,58 +111,42 @@ class BinImage
                     z += 1;
         return z;
     }
-
-public:
-    // Fill image with random values.
-    void fill_random()
-    {
-        if (f != nullptr)
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    f[i][j] = rand() % 2;
-    }
-    // Fill image with 'fill' value.
-    void fill_value(const int fill)
-    {
-        if (f != nullptr)
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    f[i][j] = fill;
-    }
     // Set height and width of image.
-    void set_size(int a, int b)
+    void resize(int new_height, int new_width)
     {
-        n = a;
-        m = b;
+        f = (bool **)realloc(f, new_height * sizeof(bool));
+        for (int i = 0; i < new_height; i++)
+            f[i] = (bool *)realloc(f[i], new_width * sizeof(bool));
+        n = new_height;
+        m = new_width;
     }
     // Returns height of image.
     int _n() const { return n; }
     // Returns width of image.
     int _m() const { return m; }
+    // Returns true if image is changed.
+    bool _is_image_changed() const {return is_image_changed;}
+    // Returns true if size of image is defined.
+    bool _is_created() const { return (n==0 || m==0) ? false : true;}
     // Input method.
     void input()
     {
-        if (trace)
-            cout << "Input method!" << endl;
-        if (n == 0 || m == 0) // checking if image size defined or not
+        log("Input method!\n");
+        if (!(_is_created()))
         {
             std::cout << "Input height, then input width:" << std::endl;
             int_input(n, "Input height:");
             int_input(m, "Input width:");
-            while (getchar() != '\n')
-            {
-            }
+            while (getchar() != '\n');
+            resize(n,m);
         }
-        create_f(n, m);
         std::cout << "Input image(string by string):" << std::endl;
         char buf[m + 1];
         char buf1[2];
         for (int i = 0; i < n; i++)
         {
             fgets(buf, m + 1, stdin);
-            while (getchar() != '\n')
-            {
-            }
+            while (getchar() != '\n');
             for (int j = 0; j < m; j++)
                 f[i][j] = buf[j] - '0';
         }
@@ -160,8 +154,7 @@ public:
     // Output method.
     void output() const
     {
-        if (trace)
-            cout << "Output method!" << endl;
+        log("Output method!\n");
         cout << "Size: " << n << " x " << m << endl; // size output
         // head
         std::cout << ltop;
@@ -186,48 +179,43 @@ public:
         std::cout << rbottom << std::endl;
     }
     // Default constructor.
-    BinImage() : f(nullptr), n(0), m(0), prev_amount(-1), prev_coefficient(0)
+    BinImage() : f(nullptr), n(0), m(0), is_image_changed(true), cache_coefficient(0)
     {
-        if (trace)
-            cout << "Default constructor!" << endl;
+        log("Default constructor!\n");
     }
     // Constructor, defining size and filling image with some value.
-    BinImage(const int a, const int b, const int fill) : f(nullptr), n(a), m(b), prev_amount(-1), prev_coefficient(0)
+    BinImage(const int a, const int b, const int fill) : f(nullptr), n(a), m(b), is_image_changed(true), cache_coefficient(0)
     {
-        if (trace)
-            cout << "Constructor, defining size and filling image!" << endl;
+        log("Constructor, defining size and filling image!\n");
         create_f(n, m);
-        fill_value(fill);
+        fill_value(*this, fill);
     }
     // Copy constructor.
-    BinImage(const BinImage &b) : f(nullptr), n(b._n()), m(b._m()), prev_amount(-1), prev_coefficient(0)
+    BinImage(const BinImage &b) : f(nullptr), n(b._n()), m(b._m()), is_image_changed(true), cache_coefficient(0)
     {
-        if (trace)
-            cout << "Copying constructor!" << endl;
+        log("Copying constructor!\n");
         create_f(n, m);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
                 f[i][j] = b(i, j);
     }
     // Move constructor.
-    BinImage(BinImage &&b) : n(b._n()), m(b._m()), f(b.f), prev_amount(-1), prev_coefficient(0)
+    BinImage(BinImage &&b) : n(b._n()), m(b._m()), f(b.f), is_image_changed(true), cache_coefficient(0)
     {
-        if (trace)
-            cout << "Moving constructor!" << endl;
+        log("Moving constructor!\n");
         b.f = nullptr;
     }
     // Destructor.
     ~BinImage()
     {
-        if (trace)
-            cout << "Destructor!" << endl;
+        log("Destructor!\n");
         delete_f();
     }
 
     // Operators overload.
 
     // Access operator overload.
-    int &operator()(const int a, const int b) const
+    bool &operator()(const int a, const int b) const
     {
         if (int_in(a, 0, n - 1) && int_in(b, 0, m - 1))
             return f[a][b];
@@ -236,42 +224,6 @@ public:
             cout << "Warning: index out of range!" << endl;
             return f[0][0];
         }
-    }
-    // Image * image operator overload.
-    BinImage operator*(const BinImage &b)
-    {
-        BinImage tmp(n, m, 0);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                tmp(i, j) = f[i][j] & b(i, j);
-        return tmp;
-    }
-    // Image + image operator overload.
-    BinImage operator+(const BinImage &b)
-    {
-        BinImage tmp(n, m, 0);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                tmp(i, j) = f[i][j] | b(i, j);
-        return tmp;
-    }
-    // Image * value operator overload.
-    BinImage operator*(const int l)
-    {
-        BinImage tmp(n, m, 0);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                tmp(i, j) = f[i][j] & l;
-        return tmp;
-    }
-    // Image + value operator overload.
-    BinImage operator+(const int l)
-    {
-        BinImage tmp(n, m, 0);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                tmp(i, j) = f[i][j] | l;
-        return tmp;
     }
     // Inverting operator overload.
     BinImage operator!()
@@ -285,23 +237,20 @@ public:
     // Calculating coefficient of filling.
     double coefficient()
     {
-        if (trace)
-            cout << "Coefficient method!" << endl;
-        int true_amount = count_1();
-        if (true_amount != prev_amount)
+        log("Coefficient method!\n");
+        if (is_image_changed)
         {
-            std::cout << "Cache recalculated!" << endl;
-            prev_coefficient = (double)true_amount / (n * m);
-            prev_amount = true_amount;
+            cache_coefficient = (double)count_true() / (n * m);
+            is_image_changed = false;
+            log("Cache recalculated!\n");
         }
-        std::cout << "Cache returned!" << endl;
-        return prev_coefficient;
+        log("Cache returned!\n");
+        return cache_coefficient;
     }
     // Copying assignment operator overload.
     BinImage &operator=(const BinImage &b)
     {
-        if (trace)
-            cout << "Copy assign overload!" << endl;
+        log("Copy assign overload!\n");
         if (&b == this)
             return *this;
         n = b._n();
@@ -313,19 +262,19 @@ public:
                 f[i][j] = b(i, j);
         return *this;
     }
-    // BinImage &operator=(BinImage &&b) // moving assignment operator overload
-    // {
-    //     if (trace)
-    //         cout << "Move assign overload!" << endl;
-    //     if (&b == this)
-    //         return *this;
-    //     n = b._n();
-    //     m = b._m();
-    //     delete_f();
-    //     f = b.f;
-    //     b.f = nullptr;
-    //     return *this;
-    // }
+    // Moving assignment operator overload.
+    BinImage &operator=(BinImage &&b)
+    {
+        log("Move assign overload!\n");
+        if (&b == this)
+            return *this;
+        n = b._n();
+        m = b._m();
+        delete_f();
+        f = b.f;
+        b.f = nullptr;
+        return *this;
+    }
 
     // Output operator overload.
     friend std::ostream &operator<<(std::ostream &out, const BinImage &image)
@@ -333,6 +282,58 @@ public:
         image.output();
     }
 };
+// Fill image with random values.
+void fill_random(BinImage& a)
+{
+    if (a._is_created())
+        for (int i = 0; i < a._n(); i++)
+            for (int j = 0; j < a._m(); j++)
+                a(i, j) = rand() % 2;
+}
+// Fill image with 'fill' value.
+void fill_value(BinImage& a, const int fill)
+{
+    if (a._is_created())
+        for (int i = 0; i < a._n(); i++)
+            for (int j = 0; j < a._m(); j++)
+                a(i, j) = fill;
+}
+// Image * image operator overload.
+BinImage operator*(const BinImage &a, const BinImage &b)
+{
+    BinImage tmp(a._n(), a._m(), 0);
+    for (int i = 0; i < a._n(); i++)
+        for (int j = 0; j < a._m(); j++)
+            tmp(i, j) = a(i, j) & b(i, j);
+    return tmp;
+}
+// Image + image operator overload.
+BinImage operator+(const BinImage &a, const BinImage &b)
+{
+    BinImage tmp(a._n(), a._m(), 0);
+    for (int i = 0; i < a._n(); i++)
+        for (int j = 0; j < a._m(); j++)
+            tmp(i, j) = a(i, j) | b(i, j);
+    return tmp;
+}
+// Image * value operator overload.
+BinImage operator*(const BinImage &a, const int l)
+{
+    BinImage tmp(a._n(), a._m(), 0);
+    for (int i = 0; i < a._n(); i++)
+        for (int j = 0; j < a._m(); j++)
+            tmp(i, j) = a(i, j) & l;
+    return tmp;
+}
+// Image + value operator overload.
+BinImage operator+(const BinImage &a, const int l)
+{
+    BinImage tmp(a._n(), a._m(), 0);
+    for (int i = 0; i < a._n(); i++)
+        for (int j = 0; j < a._m(); j++)
+            tmp(i, j) = a(i, j) | l;
+    return tmp;
+}
 // Value * image operator overload.
 BinImage operator*(const int l, const BinImage &b)
 {
@@ -354,13 +355,13 @@ BinImage operator+(const int l, const BinImage &b)
 int main()
 {
     srand(time(NULL));
-    trace = 1;
+    trace = true;
     BinImage a;
-    a.set_size(2, 2);
-    a.fill_random();
+    a.resize(2, 2);
+    fill_random(a);
     BinImage b;
-    b.set_size(2, 2);
-    b.fill_random();
+    b.resize(2, 2);
+    fill_random(b);
     BinImage c;
     cout << a + b << a * b << a * 0 << b + 1;
     return 0;
