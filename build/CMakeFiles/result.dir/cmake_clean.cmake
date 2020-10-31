@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/result.dir/onefile.cpp.o"
-  "result"
+  "CMakeFiles/result.dir/onefile.cpp.obj"
+  "libresult.dll.a"
+  "result.exe"
+  "result.exe.manifest"
   "result.pdb"
 )
 

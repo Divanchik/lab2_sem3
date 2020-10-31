@@ -38,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "result::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-result-Debug-3aba699d2faf77a7289c.json",
+					"jsonFile" : "target-result-Debug-d1273cb6614af1bec2e2.json",
 					"name" : "result",
 					"projectIndex" : 0
 				}
@@ -48,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/dimadivan/lab2_sem3/build",
-		"source" : "/home/dimadivan/lab2_sem3"
+		"build" : "C:/Users/Lenovo/Desktop/lab2_sem3/build",
+		"source" : "C:/Users/Lenovo/Desktop/lab2_sem3"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 0
+		"minor" : 1
 	}
 }

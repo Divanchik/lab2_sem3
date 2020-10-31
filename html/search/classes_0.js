@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['binimage_10',['BinImage',['../classbim_1_1BinImage.html',1,'bim::BinImage'],['../classBinImage.html',1,'BinImage']]]
+  ['binimage_29',['BinImage',['../classbim_1_1_bin_image.html',1,'bim::BinImage'],['../class_bin_image.html',1,'BinImage']]]
 ];

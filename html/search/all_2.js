@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['find_5fchar_2',['find_char',['../onefile_8cpp.html#a4346075156dbbd1f33b152b4f095c3bc',1,'onefile.cpp']]]
+  ['coefficient_6',['coefficient',['../class_bin_image.html#a86f252556fcf16592a1438542149c9d0',1,'BinImage']]],
+  ['count_5fchar_7',['count_char',['../onefile_8cpp.html#acf040646b9adcf5113a7fb15778741de',1,'onefile.cpp']]],
+  ['count_5ftrue_8',['count_true',['../class_bin_image.html#a8fe269f9e904ee7110f54e1dcfbef819',1,'BinImage']]]
 ];

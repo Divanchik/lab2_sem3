@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/dimadivan/lab2_sem3/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/result.dir/onefile.cpp.o -c /home/dimadivan/lab2_sem3/onefile.cpp",
-  "file": "/home/dimadivan/lab2_sem3/onefile.cpp"
+  "directory": "C:/Users/Lenovo/Desktop/lab2_sem3/build",
+  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\G__~1.EXE   -g -o CMakeFiles\\result.dir\\onefile.cpp.obj -c C:\\Users\\Lenovo\\Desktop\\lab2_sem3\\onefile.cpp",
+  "file": "C:/Users/Lenovo/Desktop/lab2_sem3/onefile.cpp"
 }
 ]

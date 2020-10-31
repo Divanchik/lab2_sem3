@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trace_9',['trace',['../onefile_8cpp.html#a7b36472a0720086e00a542efeb6f5f7a',1,'onefile.cpp']]]
+  ['resize_25',['resize',['../class_bin_image.html#ad2000633baaae543b8a5118b35bf898c',1,'BinImage']]]
 ];

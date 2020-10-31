@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "result"
+			"path" : "result.exe"
+		},
+		{
+			"path" : "result.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +38,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g  "
+					"fragment" : "-g"
 				}
 			],
 			"language" : "CXX",
@@ -55,14 +58,18 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "result",
-	"nameOnDisk" : "result",
+	"nameOnDisk" : "result.exe",
 	"paths" : 
 	{
 		"build" : ".",

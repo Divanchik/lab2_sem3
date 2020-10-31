@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['log_5',['log',['../onefile_8cpp.html#a1a2918f0c0b54538c9d2da80dc94ef12',1,'onefile.cpp']]],
-  ['lab2_5fsem3_6',['lab2_sem3',['../md_README.html',1,'']]]
+  ['input_12',['input',['../class_bin_image.html#a7aa0802ba5976b3d5f4d0c474c1845f6',1,'BinImage']]],
+  ['int_5fin_13',['int_in',['../onefile_8cpp.html#a865185f344d46948ebc26e56e718212c',1,'onefile.cpp']]],
+  ['int_5finput_14',['int_input',['../onefile_8cpp.html#a82a9cb2ea9253d2461ac1f9b2363f5f7',1,'onefile.cpp']]]
 ];

@@ -1,1 +1,3 @@
-/bin/x86_64-linux-gnu-g++-9  -g  -rdynamic CMakeFiles/result.dir/onefile.cpp.o  -o result 
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\result.dir/objects.a
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe cr CMakeFiles\result.dir/objects.a @CMakeFiles\result.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\result.dir/objects.a -Wl,--no-whole-archive -o result.exe -Wl,--out-implib,libresult.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\result.dir\linklibs.rsp
