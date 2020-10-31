@@ -129,7 +129,7 @@ public:
         return z;
     }
     /// Fill image with 'fill' value.
-    void fill_value(const int fill)
+    void fill_value(const bool fill)
     {
         if (_is_created())
             for (int i = 0; i < n; i++)
@@ -145,16 +145,17 @@ public:
         n = new_height;
         m = new_width;
     }
-    // Returns height of image.
+    /// \return Height of image
     int _n() const { return n; }
-    // Returns width of image.
+    /// \return Width of image
     int _m() const { return m; }
-    // Returns true if image is changed.
+    /// \return 'true' if image is changed
     bool _is_image_changed() const {return is_image_changed;}
-    // Returns true if size of image is defined.
+    /// \return 'true' if size of image is defined
     bool _is_created() const { return (n==0 || m==0) ? false : true;}
+    /// \return Cached coefficient
     double _cache() const {return cache_coefficient;}
-    // Input method.
+    /// Input method
     void input()
     {
         log("Input method!\n");
