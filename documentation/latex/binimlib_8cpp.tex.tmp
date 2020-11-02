@@ -1,0 +1,191 @@
+\hypertarget{binimlib_8cpp}{}\doxysection{binimlib.\+cpp File Reference}
+\label{binimlib_8cpp}\index{binimlib.cpp@{binimlib.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include \char`\"{}binimlib.\+h\char`\"{}}\newline
+Include dependency graph for binimlib.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{binimlib_8cpp_a93299950f503e82af8f0f741e91529ba}\label{binimlib_8cpp_a93299950f503e82af8f0f741e91529ba}} 
+void \mbox{\hyperlink{binimlib_8cpp_a93299950f503e82af8f0f741e91529ba}{binim\+::enable\+\_\+logging}} ()
+\begin{DoxyCompactList}\small\item\em Enable logging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{binimlib_8cpp_ab018629a10dbc8b3361eabc8dd9e5e9c}\label{binimlib_8cpp_ab018629a10dbc8b3361eabc8dd9e5e9c}} 
+void \mbox{\hyperlink{binimlib_8cpp_ab018629a10dbc8b3361eabc8dd9e5e9c}{binim\+::disable\+\_\+logging}} ()
+\begin{DoxyCompactList}\small\item\em Disable logging. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{binimlib_8cpp_a293cd0d248bce9848f8511833031f8ca}{binim\+::log}} (const char $\ast$s)
+\item 
+int \mbox{\hyperlink{binimlib_8cpp_a3bfea1cf6f17f3689ae7614581611e46}{binim\+::strlen}} (const char $\ast$s)
+\item 
+int \mbox{\hyperlink{binimlib_8cpp_a68670068fac89e2b7626321b7db629c7}{binim\+::find\+\_\+char}} (const char c, const char $\ast$s)
+\item 
+void \mbox{\hyperlink{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}{binim\+::int\+\_\+input}} (int \&a, const char $\ast$s)
+\item 
+int \mbox{\hyperlink{binimlib_8cpp_a7fbd3a3b09c0ea88692287a62f4d8e72}{binim\+::count\+\_\+char}} (const char c, const char $\ast$s)
+\item 
+int \mbox{\hyperlink{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}{binim\+::int\+\_\+in}} (const int n, const int a, const int b)
+\item 
+\mbox{\Hypertarget{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}\label{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}} 
+std\+::ostream \& \mbox{\hyperlink{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}{binim\+::operator$<$$<$}} (std\+::ostream \&os, const Bin\+Image \&a)
+\begin{DoxyCompactList}\small\item\em Output operator overload. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{binimlib_8cpp_a67de5b16e75066957b786f85b3f73108}{binim\+::fill\+\_\+random}} (Bin\+Image \&a)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_ac792fdfbd3ee792752fecc30f5967748}{binim\+::operator$\ast$}} (const Bin\+Image \&a, const Bin\+Image \&b)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_af27b56362821de3a98ccb88832ed17fb}{binim\+::operator+}} (const Bin\+Image \&a, const Bin\+Image \&b)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}{binim\+::operator$\ast$}} (const Bin\+Image \&a, const int l)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}{binim\+::operator+}} (const Bin\+Image \&a, const int l)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}{binim\+::operator$\ast$}} (const int l, const Bin\+Image \&b)
+\item 
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}{binim\+::operator+}} (const int l, const Bin\+Image \&b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Binary Image library (source file) 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{binimlib_8cpp_a7fbd3a3b09c0ea88692287a62f4d8e72}\label{binimlib_8cpp_a7fbd3a3b09c0ea88692287a62f4d8e72}} 
+\index{binimlib.cpp@{binimlib.cpp}!count\_char@{count\_char}}
+\index{count\_char@{count\_char}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{count\_char()}{count\_char()}}
+{\footnotesize\ttfamily int binim\+::count\+\_\+char (\begin{DoxyParamCaption}\item[{const char}]{c,  }\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & String \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & Character that you want to count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Amount of char in string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a67de5b16e75066957b786f85b3f73108}\label{binimlib_8cpp_a67de5b16e75066957b786f85b3f73108}} 
+\index{binimlib.cpp@{binimlib.cpp}!fill\_random@{fill\_random}}
+\index{fill\_random@{fill\_random}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{fill\_random()}{fill\_random()}}
+{\footnotesize\ttfamily void binim\+::fill\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a }\end{DoxyParamCaption})}
+
+Fill image with random values 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em a} & Binary image \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{binimlib_8cpp_a68670068fac89e2b7626321b7db629c7}\label{binimlib_8cpp_a68670068fac89e2b7626321b7db629c7}} 
+\index{binimlib.cpp@{binimlib.cpp}!find\_char@{find\_char}}
+\index{find\_char@{find\_char}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{find\_char()}{find\_char()}}
+{\footnotesize\ttfamily int binim\+::find\+\_\+char (\begin{DoxyParamCaption}\item[{const char}]{c,  }\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & String \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & Character that you want to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index of char in string or \textquotesingle{}-\/1\textquotesingle{} if N\+OT found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}\label{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}} 
+\index{binimlib.cpp@{binimlib.cpp}!int\_in@{int\_in}}
+\index{int\_in@{int\_in}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{int\_in()}{int\_in()}}
+{\footnotesize\ttfamily int binim\+::int\+\_\+in (\begin{DoxyParamCaption}\item[{const int}]{n,  }\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+True if \textquotesingle{}n\textquotesingle{} is in interval \mbox{[}\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}\label{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}} 
+\index{binimlib.cpp@{binimlib.cpp}!int\_input@{int\_input}}
+\index{int\_input@{int\_input}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{int\_input()}{int\_input()}}
+{\footnotesize\ttfamily void binim\+::int\+\_\+input (\begin{DoxyParamCaption}\item[{int \&}]{a,  }\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+Safe integer input 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em a} & Integer \\
+\hline
+\mbox{\texttt{ in}}  & {\em s} & Message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{binimlib_8cpp_a293cd0d248bce9848f8511833031f8ca}\label{binimlib_8cpp_a293cd0d248bce9848f8511833031f8ca}} 
+\index{binimlib.cpp@{binimlib.cpp}!log@{log}}
+\index{log@{log}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily void binim\+::log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+Print message if logging enabled 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & Message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{binimlib_8cpp_ac792fdfbd3ee792752fecc30f5967748}\label{binimlib_8cpp_ac792fdfbd3ee792752fecc30f5967748}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image $\ast$ value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}\label{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const int}]{l }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image $\ast$ value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}\label{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const int}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image $\ast$ value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_af27b56362821de3a98ccb88832ed17fb}\label{binimlib_8cpp_af27b56362821de3a98ccb88832ed17fb}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image + image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}\label{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const int}]{l }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image + value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}\label{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}} 
+\index{binimlib.cpp@{binimlib.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const int}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+
+Operator overload. \begin{DoxyReturn}{Returns}
+Image + value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{binimlib_8cpp_a3bfea1cf6f17f3689ae7614581611e46}\label{binimlib_8cpp_a3bfea1cf6f17f3689ae7614581611e46}} 
+\index{binimlib.cpp@{binimlib.cpp}!strlen@{strlen}}
+\index{strlen@{strlen}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{strlen()}{strlen()}}
+{\footnotesize\ttfamily int binim\+::strlen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Length of string. 
+\end{DoxyReturn}
