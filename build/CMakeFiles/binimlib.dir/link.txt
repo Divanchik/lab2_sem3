@@ -1,0 +1,2 @@
+/bin/ar qc libbinimlib.a  CMakeFiles/binimlib.dir/binimlib.cpp.o
+/bin/ranlib libbinimlib.a

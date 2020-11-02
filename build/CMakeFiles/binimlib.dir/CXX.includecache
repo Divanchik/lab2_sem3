@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dimadivan/lab2_sem3/binimlib.cpp
+iostream
+-
+cstdlib
+-
+ctime
+-
+binimlib.h
+/home/dimadivan/lab2_sem3/binimlib.h
+
+/home/dimadivan/lab2_sem3/binimlib.h
+
