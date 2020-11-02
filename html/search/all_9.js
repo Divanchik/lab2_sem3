@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trace_27',['trace',['../onefile_8cpp.html#a7b36472a0720086e00a542efeb6f5f7a',1,'onefile.cpp']]]
+  ['strlen_27',['strlen',['../onefile_8cpp.html#a2dee044e4e667b5b789b493abd21cfa4',1,'onefile.cpp']]]
 ];

@@ -10,12 +10,10 @@ Binary image class.
 \item 
 int \mbox{\hyperlink{class_bin_image_a8fe269f9e904ee7110f54e1dcfbef819}{count\+\_\+true}} ()
 \item 
-\mbox{\Hypertarget{class_bin_image_a609a61c3f376553e906c8947ac334dd5}\label{class_bin_image_a609a61c3f376553e906c8947ac334dd5}} 
 void \mbox{\hyperlink{class_bin_image_a609a61c3f376553e906c8947ac334dd5}{fill\+\_\+value}} (const bool fill)
 \begin{DoxyCompactList}\small\item\em Fill image with \textquotesingle{}fill\textquotesingle{} value. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_bin_image_ad2000633baaae543b8a5118b35bf898c}\label{class_bin_image_ad2000633baaae543b8a5118b35bf898c}} 
 void \mbox{\hyperlink{class_bin_image_ad2000633baaae543b8a5118b35bf898c}{resize}} (int new\+\_\+height, int new\+\_\+width)
-\begin{DoxyCompactList}\small\item\em Set height and width of image. \end{DoxyCompactList}\item 
+\item 
 int \mbox{\hyperlink{class_bin_image_a6ef6682e8071fae11b1de4798a089c4e}{\+\_\+n}} () const
 \item 
 int \mbox{\hyperlink{class_bin_image_a52d76c860e714dcfb63b1bf026e8544b}{\+\_\+m}} () const
@@ -47,18 +45,14 @@ void \mbox{\hyperlink{class_bin_image_a0cef69aa67c9a0e7188d53a89ed8525e}{output}
 \mbox{\Hypertarget{class_bin_image_a5efbd90014cbe74cf36a1cb3bc73c524}\label{class_bin_image_a5efbd90014cbe74cf36a1cb3bc73c524}} 
 \mbox{\hyperlink{class_bin_image_a5efbd90014cbe74cf36a1cb3bc73c524}{$\sim$\+Bin\+Image}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_bin_image_a200740f229564593dc43c73e0d140605}\label{class_bin_image_a200740f229564593dc43c73e0d140605}} 
 bool \mbox{\hyperlink{class_bin_image_a200740f229564593dc43c73e0d140605}{operator()}} (const int a, const int b) const
-\begin{DoxyCompactList}\small\item\em Access operator overload. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_bin_image_a6bcac9808e297be4e34499846967c811}\label{class_bin_image_a6bcac9808e297be4e34499846967c811}} 
+\item 
 bool \& \mbox{\hyperlink{class_bin_image_a6bcac9808e297be4e34499846967c811}{operator()}} (const int a, const int b)
-\begin{DoxyCompactList}\small\item\em Access operator overload. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_bin_image_a99e5b98b1d1fe796c9f02a72dd27e9ec}\label{class_bin_image_a99e5b98b1d1fe796c9f02a72dd27e9ec}} 
+\item 
 \mbox{\hyperlink{class_bin_image}{Bin\+Image}} \mbox{\hyperlink{class_bin_image_a99e5b98b1d1fe796c9f02a72dd27e9ec}{operator!}} ()
-\begin{DoxyCompactList}\small\item\em Invert image values. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_bin_image_a86f252556fcf16592a1438542149c9d0}\label{class_bin_image_a86f252556fcf16592a1438542149c9d0}} 
+\item 
 double \mbox{\hyperlink{class_bin_image_a86f252556fcf16592a1438542149c9d0}{coefficient}} ()
-\begin{DoxyCompactList}\small\item\em Calculating coefficient of filling. \end{DoxyCompactList}\item 
+\item 
 \mbox{\Hypertarget{class_bin_image_a13a910c2318c99303663f96574240cb5}\label{class_bin_image_a13a910c2318c99303663f96574240cb5}} 
 \mbox{\hyperlink{class_bin_image}{Bin\+Image}} \& \mbox{\hyperlink{class_bin_image_a13a910c2318c99303663f96574240cb5}{operator=}} (const \mbox{\hyperlink{class_bin_image}{Bin\+Image}} \&b)
 \begin{DoxyCompactList}\small\item\em Copy assignment operator overload. \end{DoxyCompactList}\item 
@@ -116,6 +110,15 @@ Width of image
 \begin{DoxyReturn}{Returns}
 Height of image 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_bin_image_a86f252556fcf16592a1438542149c9d0}\label{class_bin_image_a86f252556fcf16592a1438542149c9d0}} 
+\index{BinImage@{BinImage}!coefficient@{coefficient}}
+\index{coefficient@{coefficient}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{coefficient()}{coefficient()}}
+{\footnotesize\ttfamily double Bin\+Image\+::coefficient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Coefficient (amount of true value in image / amount of all elements in image) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_bin_image_a8fe269f9e904ee7110f54e1dcfbef819}\label{class_bin_image_a8fe269f9e904ee7110f54e1dcfbef819}} 
 \index{BinImage@{BinImage}!count\_true@{count\_true}}
 \index{count\_true@{count\_true}!BinImage@{BinImage}}
@@ -125,6 +128,75 @@ Height of image
 \begin{DoxyReturn}{Returns}
 Amount of true values in image 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_bin_image_a609a61c3f376553e906c8947ac334dd5}\label{class_bin_image_a609a61c3f376553e906c8947ac334dd5}} 
+\index{BinImage@{BinImage}!fill\_value@{fill\_value}}
+\index{fill\_value@{fill\_value}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{fill\_value()}{fill\_value()}}
+{\footnotesize\ttfamily void Bin\+Image\+::fill\+\_\+value (\begin{DoxyParamCaption}\item[{const bool}]{fill }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Fill image with \textquotesingle{}fill\textquotesingle{} value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fill} & Fill value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_bin_image_a99e5b98b1d1fe796c9f02a72dd27e9ec}\label{class_bin_image_a99e5b98b1d1fe796c9f02a72dd27e9ec}} 
+\index{BinImage@{BinImage}!operator"!@{operator"!}}
+\index{operator"!@{operator"!}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{operator"!()}{operator!()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_bin_image}{Bin\+Image}} Bin\+Image\+::operator! (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Inverted image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_bin_image_a6bcac9808e297be4e34499846967c811}\label{class_bin_image_a6bcac9808e297be4e34499846967c811}} 
+\index{BinImage@{BinImage}!operator()@{operator()}}
+\index{operator()@{operator()}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool\& Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & Height of element \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & Width of element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Element of image with (\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}) coordinates 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_bin_image_a200740f229564593dc43c73e0d140605}\label{class_bin_image_a200740f229564593dc43c73e0d140605}} 
+\index{BinImage@{BinImage}!operator()@{operator()}}
+\index{operator()@{operator()}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Access operator 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & Height of element \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & Width of element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Element of image with (\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}) coordinates 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_bin_image_ad2000633baaae543b8a5118b35bf898c}\label{class_bin_image_ad2000633baaae543b8a5118b35bf898c}} 
+\index{BinImage@{BinImage}!resize@{resize}}
+\index{resize@{resize}!BinImage@{BinImage}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void Bin\+Image\+::resize (\begin{DoxyParamCaption}\item[{int}]{new\+\_\+height,  }\item[{int}]{new\+\_\+width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set height and width of image 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+\_\+height} & New height of image \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+width} & New width of image \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

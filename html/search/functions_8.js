@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['strlen_55',['strlen',['../onefile_8cpp.html#a2dee044e4e667b5b789b493abd21cfa4',1,'onefile.cpp']]]
+  ['resize_56',['resize',['../class_bin_image.html#ad2000633baaae543b8a5118b35bf898c',1,'BinImage']]]
 ];
