@@ -36,23 +36,27 @@ namespace binim
      * \return Amount of char in string
      */
     int count_char(const char c, const char *s);
-    /// \return True if 'n' is in interval ['a', 'b']
-    int int_in(const int n, const int a, const int b);
+    /// \return True if 'n' is in interval ['left', 'right']
+    int int_in(const int n, const int left, const int right);
     /// Binary image class
     class BinImage
     {
         
-        bool **f; ///< Image array
-        int n; ///< Height of image
-        int m; ///< Width of image
+        bool *data; ///< Image array
+        int height; ///< Height of image
+        int width; ///< Width of image
         bool is_image_changed; ///< Cache for amount of 'true' values
         double cache_coefficient; ///< Cache for coefficient
 
         /// Free image array
-        void delete_f();
+        void delete_image();
 
-        /// Create image array
-        void create_f(int a, int b);
+        /**
+         * Create image array
+         * \param[in] new_height Image height
+         * \param[in] new_width Image width
+         */
+        void create_image(const int new_height, const int new_width);
 
     public:
         /// \return Amount of true values in image
@@ -69,9 +73,9 @@ namespace binim
          */
         void resize(int new_height, int new_width);
         /// \return Height of image
-        int _n() const;
+        int _height() const;
         /// \return Width of image
-        int _m() const;
+        int _width() const;
         /// \return 'true' if image is changed
         bool _is_image_changed() const;
         /// \return 'true' if size of image is defined
@@ -85,7 +89,7 @@ namespace binim
         /// Default constructor
         BinImage();
         /// Constructor, defining size and filling image with some value
-        BinImage(const int a, const int b, const int fill);
+        BinImage(const int a, const int b, const bool fill);
         /// Copy constructor
         BinImage(const BinImage &b);
         /// Move constructor
@@ -127,7 +131,7 @@ namespace binim
     void fill_random(BinImage &a);
     /** 
      * Operator overload.
-     * \return Image * value
+     * \return Image * image
      */
     BinImage operator*(const BinImage &a, const BinImage &b);
     /** 
@@ -139,20 +143,20 @@ namespace binim
      * Operator overload.
      * \return Image * value
      */
-    BinImage operator*(const BinImage &a, const int l);
+    BinImage operator*(const BinImage &a, const bool l);
     /** 
      * Operator overload.
      * \return Image + value
      */
-    BinImage operator+(const BinImage &a, const int l);
+    BinImage operator+(const BinImage &a, const bool l);
     /** 
      * Operator overload.
      * \return Image * value
      */
-    BinImage operator*(const int l, const BinImage &b);
+    BinImage operator*(const bool l, const BinImage &b);
     /** 
      * Operator overload.
      * \return Image + value
      */
-    BinImage operator+(const int l, const BinImage &b);
+    BinImage operator+(const bool l, const BinImage &b);
 };

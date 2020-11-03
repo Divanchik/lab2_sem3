@@ -64,57 +64,94 @@ namespace binim
                 i += 1;
         return i;
     }
-    int int_in(const int n, const int a, const int b)
+    int int_in(const int n, const int left, const int right)
     {
-        if (n >= a && n <= b)
+        if (n >= left && n <= right)
             return 1;
-        else
-            return 0;
+        return 0;
     }
-    void BinImage::delete_f()
+    void BinImage::delete_image()
     {
-        if (!(_is_created()))
+        //log(" \\Deleting image array!\n");
+        if (_is_created() == true)
         {
-            for (int i = 0; i < n; i++)
-                free(f[i]);
-            free(f);
+            delete data;
+            height = 0;
+            width = 0;
+            //log("  |Deleting successful!\n");
         }
+        // else
+        //     log("  |Deleting failed!\n");
     }
-    void BinImage::create_f(int a, int b)
+    void BinImage::create_image(const int new_height, const int new_width)
     {
-        if (_is_created())
-            f = (bool **)malloc(a * sizeof(bool));
-        for (int i = 0; i < a; i++)
-            f[i] = (bool *)malloc(b * sizeof(bool));
+        if (new_height  < 1 || new_width < 1)
+            throw "Failed to create image!";
+        // log(" \\Creating image array!\n");
+        if (_is_created() == false)
+        {
+            height = new_height;
+            width = new_width;
+            data = new bool[height * width];
+            // log("  |Creating successful!\n");
+        }
+        // else
+        //     log(" |Image already exists!\n");
     }
     int BinImage::count_true() const
     {
         int z = 0;
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                if (f[i][j])
-                    z += 1;
+        for (int i = 0; i < height * width; i++)
+            if (data[i])
+                z += 1;
         return z;
     }
     void BinImage::fill_value(const bool fill)
     {
+        // log("\\Filling image with some value!\n");
         if (_is_created())
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    f[i][j] = fill;
+        {
+            for (int i = 0; i < height * width; i++)
+                data[i] = fill;
+            // log(" |Filling successful!\n");
+        }
+        // else
+        //     log(" |Filling failed!\n");
+        is_image_changed = true;
     }
     void BinImage::resize(int new_height, int new_width)
     {
-        f = (bool **)realloc(f, new_height * sizeof(bool));
-        for (int i = 0; i < new_height; i++)
-            f[i] = (bool *)realloc(f[i], new_width * sizeof(bool));
-        n = new_height;
-        m = new_width;
+        if (new_height  < 1 || new_width < 1)
+            throw "Failed to resize image!";
+        bool* tmp = new bool[new_height * new_width];
+        int h_it, w_it;
+        if (new_height < height)
+            h_it = new_height;
+        else
+            h_it = height;
+        if (new_width < width)
+            w_it = new_width;
+        else
+            w_it = width;
+        for (int i = 0; i < h_it; i++)
+            for(int j = 0; j < w_it; j++)
+                tmp[i * new_width + j] = data[i * width + j];
+        delete data;
+        data = tmp;
+        tmp = nullptr;
+        height = new_height;
+        width = new_width;
+        is_image_changed = true;
     }
-    int BinImage::_n() const { return n; }
-    int BinImage::_m() const { return m; }
+    int BinImage::_height() const { return height; }
+    int BinImage::_width() const { return width; }
     bool BinImage::_is_image_changed() const { return is_image_changed; }
-    bool BinImage::_is_created() const { return (n == 0 || m == 0) ? false : true; }
+    bool BinImage::_is_created() const
+    { 
+        if (height == 0 || width == 0)
+            return false;
+        return true;
+    }
     double BinImage::_cache() const { return cache_coefficient; }
     void BinImage::input()
     {
@@ -122,103 +159,110 @@ namespace binim
         if (!(_is_created()))
         {
             std::cout << "Input height, then input width:" << std::endl;
-            int_input(n, "Input height:");
-            int_input(m, "Input width:");
+            int_input(height, "Input height:");
+            int_input(width, "Input width:");
             while (getchar() != '\n')
                 ;
-            resize(n, m);
+            create_image(height, width);
         }
         std::cout << "Input image(string by string):" << std::endl;
-        char buf[m + 1];
+        char buf[width + 1];
         char buf1[2];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < height; i++)
         {
-            fgets(buf, m + 1, stdin);
+            fgets(buf, width + 1, stdin);
             while (getchar() != '\n')
                 ;
-            for (int j = 0; j < m; j++)
-                f[i][j] = buf[j] - '0';
+            for (int j = 0; j < width; j++)
+                data[i * width + j] = buf[j] - '0';
         }
+        is_image_changed = true;
     }
     void BinImage::output() const
     {
         log("Output method!\n");
         if (trace)
-            std::cout << "Size: " << n << " x " << m << std::endl; // size output
+            std::cout << "Size: " << height << " x " << width << std::endl; // size output
         // head
-        for (int j = 0; j < m + 2; j++)
+        for (int j = 0; j < width + 2; j++)
             std::cout << '=';
         std::cout << std::endl;
         // body
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < height; i++)
         {
             std::cout << '|';
-            for (int j = 0; j < m; j++)
-                if (f[i][j])
+            for (int j = 0; j < width; j++)
+                if (data[i * width + j])
                     std::cout << '#';
                 else
                     std::cout << '.';
             std::cout << '|' << std::endl;
         }
         // bottom
-        for (int j = 0; j < m + 2; j++)
+        for (int j = 0; j < width + 2; j++)
             std::cout << '=';
         std::cout << std::endl;
     }
-    BinImage::BinImage() : f(nullptr), n(0), m(0), is_image_changed(true), cache_coefficient(0)
+    BinImage::BinImage() : data(nullptr), height(0), width(0), is_image_changed(true), cache_coefficient(0)
     {
         log("Default constructor!\n");
     }
-    BinImage::BinImage(const int a, const int b, const int fill) : f(nullptr), n(a), m(b), is_image_changed(true), cache_coefficient(0)
+    BinImage::BinImage(const int new_height, const int new_width, const bool fill) : height(0), width(0), data(nullptr), is_image_changed(true), cache_coefficient(0)
     {
-        log("Constructor, defining size and filling image!\n");
-        create_f(n, m);
+        log("\\Constructor, defining size and filling image!\n");
+        create_image(new_height, new_width);
+        std::cout << " |Size: " << height << " x " << width << std::endl;
         fill_value(fill);
     }
-    BinImage::BinImage(const BinImage &b) : f(nullptr), n(b._n()), m(b._m()), is_image_changed(b._is_image_changed()), cache_coefficient(b._cache())
+    BinImage::BinImage(const BinImage &b) : height(0), width(0), data(nullptr), is_image_changed(b._is_image_changed()), cache_coefficient(b._cache())
     {
-        log("Copying constructor!\n");
-        create_f(n, m);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                f[i][j] = b(i, j);
+        log("Copy constructor!\n");
+        create_image(b._height(), b._width());
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                data[i * width + j] = b(i, j);
     }
-    BinImage::BinImage(BinImage &&b) : n(b._n()), m(b._m()), f(b.f), is_image_changed(b._is_image_changed()), cache_coefficient(b._cache())
+    BinImage::BinImage(BinImage &&b) : height(b._height()), width(b._width()), data(b.data), is_image_changed(b._is_image_changed()), cache_coefficient(b._cache())
     {
-        log("Moving constructor!\n");
-        b.f = nullptr;
+        log("Move constructor!\n");
+        b.data = nullptr;
     }
     BinImage::~BinImage()
     {
         log("Destructor!\n");
-        delete_f();
+        delete_image();
     }
-    bool BinImage::operator()(const int a, const int b) const
+    bool BinImage::operator()(const int i, const int j) const
     {
-        if (int_in(a, 0, n - 1) && int_in(b, 0, m - 1))
-            return f[a][b];
+        if (height < 1 || width < 1)
+            throw "Index out of range!";
+        if (int_in(i, 0, height - 1) && int_in(j, 0, width - 1))
+            return data[i * width + j];
         else
         {
             log("Warning: index out of range!\n");
-            return f[0][0];
+            return data[0];
         }
     }
-    bool& BinImage::operator()(const int a, const int b)
+    bool& BinImage::operator()(const int i, const int j)
     {
-        if (int_in(a, 0, n - 1) && int_in(b, 0, m - 1))
-            return f[a][b];
+        if (height < 1 || width < 1)
+            throw "Index out of range!";
+        is_image_changed = true;
+        if (int_in(i, 0, height - 1) && int_in(j, 0, width - 1))
+            return data[i * width + j];
         else
         {
             log("Warning: index out of range!\n");
-            return f[0][0];
+            return data[0];
         }
     }
     BinImage BinImage::operator!()
     {
-        BinImage tmp(n, m, 0);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                tmp(i, j) = !(f[i][j]);
+        BinImage tmp(height, width, false);
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                tmp(i, j) = !(data[i * width + j]);
         return tmp;
     }
     double BinImage::coefficient()
@@ -226,7 +270,7 @@ namespace binim
         log("Coefficient method!\n");
         if (is_image_changed)
         {
-            cache_coefficient = (double)count_true() / (n * m);
+            cache_coefficient = (double)count_true() / (height * width);
             is_image_changed = false;
             log("Cache recalculated!\n");
         }
@@ -238,12 +282,11 @@ namespace binim
         log("Copy assign overload!\n");
         if (&b == this)
             return *this;
-        n = b._n();
-        m = b._m();
-        resize(n, m);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                f[i][j] = b(i, j);
+        is_image_changed = true;
+        resize(b._height(), b._width());
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                data[i * width + j] = b(i, j);
         return *this;
     }
     BinImage& BinImage::operator=(BinImage &&b)
@@ -251,11 +294,12 @@ namespace binim
         log("Move assign overload!\n");
         if (&b == this)
             return *this;
-        n = b._n();
-        m = b._m();
-        delete_f();
-        f = b.f;
-        b.f = nullptr;
+        is_image_changed = true;
+        delete_image();
+        height = b._height();
+        width = b._width();
+        data = b.data;
+        b.data = nullptr;
         return *this;
     }
     std::ostream &operator<<(std::ostream &os, const BinImage &a)
@@ -266,55 +310,55 @@ namespace binim
     void fill_random(BinImage &a)
     {
         if (a._is_created())
-            for (int i = 0; i < a._n(); i++)
-                for (int j = 0; j < a._m(); j++)
+            for (int i = 0; i < a._height(); i++)
+                for (int j = 0; j < a._width(); j++)
                     a(i, j) = (bool)(rand() % 2);
     }
     BinImage operator*(const BinImage &a, const BinImage &b)
     {
-        BinImage tmp(a._n(), a._m(), 0);
-        for (int i = 0; i < a._n(); i++)
-            for (int j = 0; j < a._m(); j++)
+        BinImage tmp(a._height(), a._width(), 0);
+        for (int i = 0; i < a._height(); i++)
+            for (int j = 0; j < a._width(); j++)
                 tmp(i, j) = a(i, j) & b(i, j);
         return tmp;
     }
     BinImage operator+(const BinImage &a, const BinImage &b)
     {
-        BinImage tmp(a._n(), a._m(), 0);
-        for (int i = 0; i < a._n(); i++)
-            for (int j = 0; j < a._m(); j++)
+        BinImage tmp(a._height(), a._width(), 0);
+        for (int i = 0; i < a._height(); i++)
+            for (int j = 0; j < a._width(); j++)
                 tmp(i, j) = a(i, j) | b(i, j);
         return tmp;
     }
-    BinImage operator*(const BinImage &a, const int l)
+    BinImage operator*(const BinImage &a, const bool l)
     {
-        BinImage tmp(a._n(), a._m(), 0);
-        for (int i = 0; i < a._n(); i++)
-            for (int j = 0; j < a._m(); j++)
+        BinImage tmp(a._height(), a._width(), 0);
+        for (int i = 0; i < a._height(); i++)
+            for (int j = 0; j < a._width(); j++)
                 tmp(i, j) = a(i, j) & l;
         return tmp;
     }
-    BinImage operator+(const BinImage &a, const int l)
+    BinImage operator+(const BinImage &a, const bool l)
     {
-        BinImage tmp(a._n(), a._m(), 0);
-        for (int i = 0; i < a._n(); i++)
-            for (int j = 0; j < a._m(); j++)
+        BinImage tmp(a._height(), a._width(), 0);
+        for (int i = 0; i < a._height(); i++)
+            for (int j = 0; j < a._width(); j++)
                 tmp(i, j) = a(i, j) | l;
         return tmp;
     }
-    BinImage operator*(const int l, const BinImage &b)
+    BinImage operator*(const bool l, const BinImage &b)
     {
-        BinImage tmp(b._n(), b._m(), 0);
-        for (int i = 0; i < b._n(); i++)
-            for (int j = 0; j < b._m(); j++)
+        BinImage tmp(b._height(), b._width(), 0);
+        for (int i = 0; i < b._height(); i++)
+            for (int j = 0; j < b._width(); j++)
                 tmp(i, j) = b(i, j) & l;
         return tmp;
     }
-    BinImage operator+(const int l, const BinImage &b)
+    BinImage operator+(const bool l, const BinImage &b)
     {
-        BinImage tmp(b._n(), b._m(), 0);
-        for (int i = 0; i < b._n(); i++)
-            for (int j = 0; j < b._m(); j++)
+        BinImage tmp(b._height(), b._width(), 0);
+        for (int i = 0; i < b._height(); i++)
+            for (int j = 0; j < b._width(); j++)
                 tmp(i, j) = b(i, j) | l;
         return tmp;
     }

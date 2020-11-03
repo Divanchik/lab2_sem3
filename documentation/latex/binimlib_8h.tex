@@ -26,7 +26,7 @@ void \mbox{\hyperlink{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}{binim\+::
 \item 
 int \mbox{\hyperlink{binimlib_8cpp_a7fbd3a3b09c0ea88692287a62f4d8e72}{binim\+::count\+\_\+char}} (const char c, const char $\ast$s)
 \item 
-int \mbox{\hyperlink{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}{binim\+::int\+\_\+in}} (const int n, const int a, const int b)
+int \mbox{\hyperlink{binimlib_8cpp_a787d5fae5e66fdd54f6130499ab10af1}{binim\+::int\+\_\+in}} (const int n, const int left, const int right)
 \item 
 \mbox{\Hypertarget{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}\label{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}} 
 std\+::ostream \& \mbox{\hyperlink{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}{binim\+::operator$<$$<$}} (std\+::ostream \&os, const Bin\+Image \&a)
@@ -37,13 +37,13 @@ Bin\+Image \mbox{\hyperlink{binimlib_8cpp_ac792fdfbd3ee792752fecc30f5967748}{bin
 \item 
 Bin\+Image \mbox{\hyperlink{binimlib_8cpp_af27b56362821de3a98ccb88832ed17fb}{binim\+::operator+}} (const Bin\+Image \&a, const Bin\+Image \&b)
 \item 
-Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}{binim\+::operator$\ast$}} (const Bin\+Image \&a, const int l)
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a762edb385eb123efce599ea6539ee86c}{binim\+::operator$\ast$}} (const Bin\+Image \&a, const bool l)
 \item 
-Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}{binim\+::operator+}} (const Bin\+Image \&a, const int l)
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_abb97209293298575c3060301c3d1d740}{binim\+::operator+}} (const Bin\+Image \&a, const bool l)
 \item 
-Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}{binim\+::operator$\ast$}} (const int l, const Bin\+Image \&b)
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_ab39f2dce1a14706d614bb52b268fbe43}{binim\+::operator$\ast$}} (const bool l, const Bin\+Image \&b)
 \item 
-Bin\+Image \mbox{\hyperlink{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}{binim\+::operator+}} (const int l, const Bin\+Image \&b)
+Bin\+Image \mbox{\hyperlink{binimlib_8cpp_a2cccd7d11425f07e919f5599c38fa7dd}{binim\+::operator+}} (const bool l, const Bin\+Image \&b)
 \end{DoxyCompactItemize}
 
 
@@ -94,14 +94,14 @@ Fill image with random values
 \begin{DoxyReturn}{Returns}
 Index of char in string or \textquotesingle{}-\/1\textquotesingle{} if N\+OT found 
 \end{DoxyReturn}
-\mbox{\Hypertarget{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}\label{binimlib_8cpp_a0e718f16454dba38c782de6c6d471aeb}} 
+\mbox{\Hypertarget{binimlib_8cpp_a787d5fae5e66fdd54f6130499ab10af1}\label{binimlib_8cpp_a787d5fae5e66fdd54f6130499ab10af1}} 
 \index{binimlib.h@{binimlib.h}!int\_in@{int\_in}}
 \index{int\_in@{int\_in}!binimlib.h@{binimlib.h}}
 \doxysubsubsection{\texorpdfstring{int\_in()}{int\_in()}}
-{\footnotesize\ttfamily int binim\+::int\+\_\+in (\begin{DoxyParamCaption}\item[{const int}]{n,  }\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int binim\+::int\+\_\+in (\begin{DoxyParamCaption}\item[{const int}]{n,  }\item[{const int}]{left,  }\item[{const int}]{right }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
-True if \textquotesingle{}n\textquotesingle{} is in interval \mbox{[}\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}\mbox{]} 
+True if \textquotesingle{}n\textquotesingle{} is in interval \mbox{[}\textquotesingle{}left\textquotesingle{}, \textquotesingle{}right\textquotesingle{}\mbox{]} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}\label{binimlib_8cpp_a18c2191ebc2e9928c339aad007885ffd}} 
 \index{binimlib.h@{binimlib.h}!int\_input@{int\_input}}
@@ -134,22 +134,22 @@ Print message if logging enabled
 {\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
 
 Operator overload. \begin{DoxyReturn}{Returns}
-Image $\ast$ value 
+Image $\ast$ image 
 \end{DoxyReturn}
-\mbox{\Hypertarget{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}\label{binimlib_8cpp_a2fd36de1ffc4b2e9cbf1e7c67f2cbb41}} 
+\mbox{\Hypertarget{binimlib_8cpp_a762edb385eb123efce599ea6539ee86c}\label{binimlib_8cpp_a762edb385eb123efce599ea6539ee86c}} 
 \index{binimlib.h@{binimlib.h}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!binimlib.h@{binimlib.h}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const int}]{l }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const bool}]{l }\end{DoxyParamCaption})}
 
 Operator overload. \begin{DoxyReturn}{Returns}
 Image $\ast$ value 
 \end{DoxyReturn}
-\mbox{\Hypertarget{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}\label{binimlib_8cpp_a1b3b0ca39d7576df5551734c7c44818f}} 
+\mbox{\Hypertarget{binimlib_8cpp_ab39f2dce1a14706d614bb52b268fbe43}\label{binimlib_8cpp_ab39f2dce1a14706d614bb52b268fbe43}} 
 \index{binimlib.h@{binimlib.h}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!binimlib.h@{binimlib.h}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const int}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const bool}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
 
 Operator overload. \begin{DoxyReturn}{Returns}
 Image $\ast$ value 
@@ -163,20 +163,20 @@ Image $\ast$ value
 Operator overload. \begin{DoxyReturn}{Returns}
 Image + image 
 \end{DoxyReturn}
-\mbox{\Hypertarget{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}\label{binimlib_8cpp_a72ab4a1bb602551f1bfa726f36d3cbfa}} 
+\mbox{\Hypertarget{binimlib_8cpp_abb97209293298575c3060301c3d1d740}\label{binimlib_8cpp_abb97209293298575c3060301c3d1d740}} 
 \index{binimlib.h@{binimlib.h}!operator+@{operator+}}
 \index{operator+@{operator+}!binimlib.h@{binimlib.h}}
 \doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const int}]{l }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{a,  }\item[{const bool}]{l }\end{DoxyParamCaption})}
 
 Operator overload. \begin{DoxyReturn}{Returns}
 Image + value 
 \end{DoxyReturn}
-\mbox{\Hypertarget{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}\label{binimlib_8cpp_abd116e7562c3f35072c400be07baae44}} 
+\mbox{\Hypertarget{binimlib_8cpp_a2cccd7d11425f07e919f5599c38fa7dd}\label{binimlib_8cpp_a2cccd7d11425f07e919f5599c38fa7dd}} 
 \index{binimlib.h@{binimlib.h}!operator+@{operator+}}
 \index{operator+@{operator+}!binimlib.h@{binimlib.h}}
 \doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const int}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Bin\+Image binim\+::operator+ (\begin{DoxyParamCaption}\item[{const bool}]{l,  }\item[{const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&}]{b }\end{DoxyParamCaption})}
 
 Operator overload. \begin{DoxyReturn}{Returns}
 Image + value 

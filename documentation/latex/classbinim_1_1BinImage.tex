@@ -18,9 +18,9 @@ void \mbox{\hyperlink{classbinim_1_1BinImage_aa2e15daa363fa31ad62969b09aead675}{
 \item 
 void \mbox{\hyperlink{classbinim_1_1BinImage_a7768959ad9240bc07b6ab9558a7efd0a}{resize}} (int new\+\_\+height, int new\+\_\+width)
 \item 
-int \mbox{\hyperlink{classbinim_1_1BinImage_ae8f3e87ae036dcc9712e866b93a360e9}{\+\_\+n}} () const
+int \mbox{\hyperlink{classbinim_1_1BinImage_a0de24fad64fa362baf196e75f407b5ca}{\+\_\+height}} () const
 \item 
-int \mbox{\hyperlink{classbinim_1_1BinImage_a46a6b6dfda535313f27a393f21908776}{\+\_\+m}} () const
+int \mbox{\hyperlink{classbinim_1_1BinImage_aee02ff3be8704ddd769c34ea9c473d62}{\+\_\+width}} () const
 \item 
 bool \mbox{\hyperlink{classbinim_1_1BinImage_a158cf409a03d689600faa63a9d66e921}{\+\_\+is\+\_\+image\+\_\+changed}} () const
 \item 
@@ -37,8 +37,8 @@ void \mbox{\hyperlink{classbinim_1_1BinImage_afceb538e1c7a5727e48ff0318d46abe4}{
 \mbox{\Hypertarget{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}\label{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}} 
 \mbox{\hyperlink{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}{Bin\+Image}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classbinim_1_1BinImage_aa33f5f323a35f26ebef26531ffc1e47d}\label{classbinim_1_1BinImage_aa33f5f323a35f26ebef26531ffc1e47d}} 
-\mbox{\hyperlink{classbinim_1_1BinImage_aa33f5f323a35f26ebef26531ffc1e47d}{Bin\+Image}} (const int a, const int b, const int fill)
+\mbox{\Hypertarget{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}\label{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}} 
+\mbox{\hyperlink{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}{Bin\+Image}} (const int a, const int b, const bool fill)
 \begin{DoxyCompactList}\small\item\em Constructor, defining size and filling image with some value. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}\label{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}} 
 \mbox{\hyperlink{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}{Bin\+Image}} (const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&b)
@@ -78,6 +78,15 @@ Binary image class.
 \begin{DoxyReturn}{Returns}
 Cached coefficient 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classbinim_1_1BinImage_a0de24fad64fa362baf196e75f407b5ca}\label{classbinim_1_1BinImage_a0de24fad64fa362baf196e75f407b5ca}} 
+\index{binim::BinImage@{binim::BinImage}!\_height@{\_height}}
+\index{\_height@{\_height}!binim::BinImage@{binim::BinImage}}
+\doxysubsubsection{\texorpdfstring{\_height()}{\_height()}}
+{\footnotesize\ttfamily int binim\+::\+Bin\+Image\+::\+\_\+height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Height of image 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classbinim_1_1BinImage_a0c1f340fd246a17ba3915b9e72f84a55}\label{classbinim_1_1BinImage_a0c1f340fd246a17ba3915b9e72f84a55}} 
 \index{binim::BinImage@{binim::BinImage}!\_is\_created@{\_is\_created}}
 \index{\_is\_created@{\_is\_created}!binim::BinImage@{binim::BinImage}}
@@ -96,23 +105,14 @@ Cached coefficient
 \begin{DoxyReturn}{Returns}
 \textquotesingle{}true\textquotesingle{} if image is changed 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbinim_1_1BinImage_a46a6b6dfda535313f27a393f21908776}\label{classbinim_1_1BinImage_a46a6b6dfda535313f27a393f21908776}} 
-\index{binim::BinImage@{binim::BinImage}!\_m@{\_m}}
-\index{\_m@{\_m}!binim::BinImage@{binim::BinImage}}
-\doxysubsubsection{\texorpdfstring{\_m()}{\_m()}}
-{\footnotesize\ttfamily int binim\+::\+Bin\+Image\+::\+\_\+m (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classbinim_1_1BinImage_aee02ff3be8704ddd769c34ea9c473d62}\label{classbinim_1_1BinImage_aee02ff3be8704ddd769c34ea9c473d62}} 
+\index{binim::BinImage@{binim::BinImage}!\_width@{\_width}}
+\index{\_width@{\_width}!binim::BinImage@{binim::BinImage}}
+\doxysubsubsection{\texorpdfstring{\_width()}{\_width()}}
+{\footnotesize\ttfamily int binim\+::\+Bin\+Image\+::\+\_\+width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 Width of image 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classbinim_1_1BinImage_ae8f3e87ae036dcc9712e866b93a360e9}\label{classbinim_1_1BinImage_ae8f3e87ae036dcc9712e866b93a360e9}} 
-\index{binim::BinImage@{binim::BinImage}!\_n@{\_n}}
-\index{\_n@{\_n}!binim::BinImage@{binim::BinImage}}
-\doxysubsubsection{\texorpdfstring{\_n()}{\_n()}}
-{\footnotesize\ttfamily int binim\+::\+Bin\+Image\+::\+\_\+n (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\begin{DoxyReturn}{Returns}
-Height of image 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbinim_1_1BinImage_a682a81facbdb747832c7070b39f57872}\label{classbinim_1_1BinImage_a682a81facbdb747832c7070b39f57872}} 
 \index{binim::BinImage@{binim::BinImage}!coefficient@{coefficient}}
