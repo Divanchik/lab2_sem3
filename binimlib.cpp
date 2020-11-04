@@ -70,33 +70,34 @@ namespace binim
             return 1;
         return 0;
     }
+    int int_min(int left, int right)
+    {
+        if (left < right)
+            return left;
+        else
+            return right;
+    }
     void BinImage::delete_image()
     {
-        //log(" \\Deleting image array!\n");
-        if (_is_created() == true)
-        {
-            delete data;
-            height = 0;
-            width = 0;
-            //log("  |Deleting successful!\n");
-        }
-        // else
-        //     log("  |Deleting failed!\n");
+        log("Deleting image array!\n");
+        if (_is_created() == false)
+            throw "Memory error: Failed to delete image: Image is not created!";
+        delete data;
+        height = 0;
+        width = 0;
     }
     void BinImage::create_image(const int new_height, const int new_width)
     {
+        log("Creating image!\n");
         if (new_height  < 1 || new_width < 1)
-            throw "Failed to create image!";
-        // log(" \\Creating image array!\n");
-        if (_is_created() == false)
-        {
-            height = new_height;
-            width = new_width;
-            data = new bool[height * width];
-            // log("  |Creating successful!\n");
-        }
-        // else
-        //     log(" |Image already exists!\n");
+            throw "Memory error: Failed to create image: Incorrect new_height or new_width!";
+        if (_is_created() == true)
+            throw "Memory error: Failed to create image: Image already created!";
+        if (new_height * new_width > 100000000)
+            throw "Memory error: Failed to resize image: Image size overflow!";
+        height = new_height;
+        width = new_width;
+        data = new bool[height * width];
     }
     int BinImage::count_true() const
     {
@@ -108,33 +109,23 @@ namespace binim
     }
     void BinImage::fill_value(const bool fill)
     {
-        // log("\\Filling image with some value!\n");
+        log("\\Filling image with some value!\n");
         if (_is_created())
         {
             for (int i = 0; i < height * width; i++)
                 data[i] = fill;
-            // log(" |Filling successful!\n");
         }
-        // else
-        //     log(" |Filling failed!\n");
         is_image_changed = true;
     }
     void BinImage::resize(int new_height, int new_width)
     {
         if (new_height  < 1 || new_width < 1)
-            throw "Failed to resize image!";
+            throw "Memory error: Failed to resize image: Incorrect new_height or new_width!";
+        if (new_height * new_width > 100000000)
+            throw "Memory error: Failed to resize image: Image size overflow!";
         bool* tmp = new bool[new_height * new_width];
-        int h_it, w_it;
-        if (new_height < height)
-            h_it = new_height;
-        else
-            h_it = height;
-        if (new_width < width)
-            w_it = new_width;
-        else
-            w_it = width;
-        for (int i = 0; i < h_it; i++)
-            for(int j = 0; j < w_it; j++)
+        for (int i = 0; i < int_min(height, new_height); i++)
+            for(int j = 0; j < int_min(width, new_width); j++)
                 tmp[i * new_width + j] = data[i * width + j];
         delete data;
         data = tmp;
@@ -161,8 +152,6 @@ namespace binim
             std::cout << "Input height, then input width:" << std::endl;
             int_input(height, "Input height:");
             int_input(width, "Input width:");
-            while (getchar() != '\n')
-                ;
             create_image(height, width);
         }
         std::cout << "Input image(string by string):" << std::endl;
@@ -182,7 +171,7 @@ namespace binim
     {
         log("Output method!\n");
         if (trace)
-            std::cout << "Size: " << height << " x " << width << std::endl; // size output
+            std::cout << "Size: " << height << " x " << width << std::endl;
         // head
         for (int j = 0; j < width + 2; j++)
             std::cout << '=';
@@ -211,7 +200,8 @@ namespace binim
     {
         log("\\Constructor, defining size and filling image!\n");
         create_image(new_height, new_width);
-        std::cout << " |Size: " << height << " x " << width << std::endl;
+        if (trace)
+            std::cout << " |Size: " << height << " x " << width << std::endl;
         fill_value(fill);
     }
     BinImage::BinImage(const BinImage &b) : height(0), width(0), data(nullptr), is_image_changed(b._is_image_changed()), cache_coefficient(b._cache())
@@ -234,28 +224,19 @@ namespace binim
     }
     bool BinImage::operator()(const int i, const int j) const
     {
-        if (height < 1 || width < 1)
-            throw "Index out of range!";
-        if (int_in(i, 0, height - 1) && int_in(j, 0, width - 1))
-            return data[i * width + j];
-        else
-        {
-            log("Warning: index out of range!\n");
-            return data[0];
-        }
+        if (_is_created() == false)
+            throw "Access error: Incorrect image size!";
+        if (!(int_in(i,0,height-1)) || !(int_in(j,0,width-1)))
+            throw "Access error: Index out of range!";
+        return data[i * width + j];
     }
     bool& BinImage::operator()(const int i, const int j)
     {
-        if (height < 1 || width < 1)
-            throw "Index out of range!";
-        is_image_changed = true;
-        if (int_in(i, 0, height - 1) && int_in(j, 0, width - 1))
-            return data[i * width + j];
-        else
-        {
-            log("Warning: index out of range!\n");
-            return data[0];
-        }
+        if (_is_created() == false)
+            throw "Access error: Incorrect image size!";
+        if (!(int_in(i,0,height-1)) || !(int_in(j,0,width-1)))
+            throw "Access error: Index out of range!";
+        return data[i * width + j];
     }
     BinImage BinImage::operator!()
     {

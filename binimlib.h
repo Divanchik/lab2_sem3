@@ -25,6 +25,12 @@ namespace binim
      */
     int find_char(const char c, const char *s);
     /**
+     * \param[in] left Integer
+     * \param[in] right Integer
+     * \return Minimum value
+     */
+    int int_min(int left, int right);
+    /**
      * Safe integer input
      * \param[out] a Integer
      * \param[in] s Message
@@ -89,7 +95,7 @@ namespace binim
         /// Default constructor
         BinImage();
         /// Constructor, defining size and filling image with some value
-        BinImage(const int a, const int b, const bool fill);
+        BinImage(const int new_height, const int new_width, const bool fill);
         /// Copy constructor
         BinImage(const BinImage &b);
         /// Move constructor
@@ -105,14 +111,14 @@ namespace binim
          * \param[in] b Width of element
          * \return Element of image with ('a', 'b') coordinates
          */
-        bool& operator()(const int a, const int b);
+        bool& operator()(const int i, const int j);
         /**
          * Access operator
          * \param[in] a Height of element
          * \param[in] b Width of element
          * \return Element of image with ('a', 'b') coordinates
          */
-        bool operator()(const int a, const int b) const;
+        bool operator()(const int i, const int j) const;
         /// \return Inverted image
         BinImage operator!();
         /// \return Coefficient (amount of true value in image divided by amount of all elements in image)
