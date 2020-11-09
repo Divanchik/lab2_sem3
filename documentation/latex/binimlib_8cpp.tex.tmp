@@ -27,6 +27,8 @@ int \mbox{\hyperlink{binimlib_8cpp_a7fbd3a3b09c0ea88692287a62f4d8e72}{binim\+::c
 \item 
 int \mbox{\hyperlink{binimlib_8cpp_a787d5fae5e66fdd54f6130499ab10af1}{binim\+::int\+\_\+in}} (const int n, const int left, const int right)
 \item 
+int \mbox{\hyperlink{binimlib_8cpp_acaf364c99b9c1d6665c0dc3e3e224066}{binim\+::int\+\_\+min}} (int left, int right)
+\item 
 \mbox{\Hypertarget{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}\label{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}} 
 std\+::ostream \& \mbox{\hyperlink{binimlib_8cpp_aee54413f1ae4126f9b4fa0f795cfdaef}{binim\+::operator$<$$<$}} (std\+::ostream \&os, const Bin\+Image \&a)
 \begin{DoxyCompactList}\small\item\em Output operator overload. \end{DoxyCompactList}\item 
@@ -115,6 +117,22 @@ Safe integer input
 \mbox{\texttt{ in}}  & {\em s} & Message \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{binimlib_8cpp_acaf364c99b9c1d6665c0dc3e3e224066}\label{binimlib_8cpp_acaf364c99b9c1d6665c0dc3e3e224066}} 
+\index{binimlib.cpp@{binimlib.cpp}!int\_min@{int\_min}}
+\index{int\_min@{int\_min}!binimlib.cpp@{binimlib.cpp}}
+\doxysubsubsection{\texorpdfstring{int\_min()}{int\_min()}}
+{\footnotesize\ttfamily int binim\+::int\+\_\+min (\begin{DoxyParamCaption}\item[{int}]{left,  }\item[{int}]{right }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em left} & Integer \\
+\hline
+\mbox{\texttt{ in}}  & {\em right} & Integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Minimum value 
+\end{DoxyReturn}
 \mbox{\Hypertarget{binimlib_8cpp_a293cd0d248bce9848f8511833031f8ca}\label{binimlib_8cpp_a293cd0d248bce9848f8511833031f8ca}} 
 \index{binimlib.cpp@{binimlib.cpp}!log@{log}}
 \index{log@{log}!binimlib.cpp@{binimlib.cpp}}

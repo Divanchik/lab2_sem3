@@ -37,8 +37,8 @@ void \mbox{\hyperlink{classbinim_1_1BinImage_afceb538e1c7a5727e48ff0318d46abe4}{
 \mbox{\Hypertarget{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}\label{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}} 
 \mbox{\hyperlink{classbinim_1_1BinImage_ae788741e9307ba1f1d05b67e828e090b}{Bin\+Image}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}\label{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}} 
-\mbox{\hyperlink{classbinim_1_1BinImage_a1cbf7589d991eedf2cb12687237e0084}{Bin\+Image}} (const int a, const int b, const bool fill)
+\mbox{\Hypertarget{classbinim_1_1BinImage_ad6aedff0c154df4789e57afcb1d5f453}\label{classbinim_1_1BinImage_ad6aedff0c154df4789e57afcb1d5f453}} 
+\mbox{\hyperlink{classbinim_1_1BinImage_ad6aedff0c154df4789e57afcb1d5f453}{Bin\+Image}} (const int new\+\_\+height, const int new\+\_\+width, const bool fill)
 \begin{DoxyCompactList}\small\item\em Constructor, defining size and filling image with some value. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}\label{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}} 
 \mbox{\hyperlink{classbinim_1_1BinImage_a2b8e68b36ec9a57b1ffa2eb632c5e5db}{Bin\+Image}} (const \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \&b)
@@ -49,9 +49,9 @@ void \mbox{\hyperlink{classbinim_1_1BinImage_afceb538e1c7a5727e48ff0318d46abe4}{
 \mbox{\Hypertarget{classbinim_1_1BinImage_a13435911aba3aeb4b9f8af33b190b3cb}\label{classbinim_1_1BinImage_a13435911aba3aeb4b9f8af33b190b3cb}} 
 \mbox{\hyperlink{classbinim_1_1BinImage_a13435911aba3aeb4b9f8af33b190b3cb}{$\sim$\+Bin\+Image}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-bool \& \mbox{\hyperlink{classbinim_1_1BinImage_a681bef3a2017ef4ce0959abf0588433f}{operator()}} (const int a, const int b)
+bool \& \mbox{\hyperlink{classbinim_1_1BinImage_a24daf198b604a1e0145fbe83f23b8ecc}{operator()}} (const int i, const int j)
 \item 
-bool \mbox{\hyperlink{classbinim_1_1BinImage_a0a332dd5ac1eb27cb1c698c27d40acf5}{operator()}} (const int a, const int b) const
+bool \mbox{\hyperlink{classbinim_1_1BinImage_ac40c51412363b281fc0c89f5605badb2}{operator()}} (const int i, const int j) const
 \item 
 \mbox{\hyperlink{classbinim_1_1BinImage}{Bin\+Image}} \mbox{\hyperlink{classbinim_1_1BinImage_ab0cdeff03ce630cfa924b5136d377104}{operator!}} ()
 \item 
@@ -152,11 +152,11 @@ Fill image with some value
 \begin{DoxyReturn}{Returns}
 Inverted image 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbinim_1_1BinImage_a681bef3a2017ef4ce0959abf0588433f}\label{classbinim_1_1BinImage_a681bef3a2017ef4ce0959abf0588433f}} 
+\mbox{\Hypertarget{classbinim_1_1BinImage_a24daf198b604a1e0145fbe83f23b8ecc}\label{classbinim_1_1BinImage_a24daf198b604a1e0145fbe83f23b8ecc}} 
 \index{binim::BinImage@{binim::BinImage}!operator()@{operator()}}
 \index{operator()@{operator()}!binim::BinImage@{binim::BinImage}}
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool \& binim\+::\+Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool \& binim\+::\+Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption})}
 
 Access operator 
 \begin{DoxyParams}[1]{Parameters}
@@ -168,11 +168,11 @@ Access operator
 \begin{DoxyReturn}{Returns}
 Element of image with (\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}) coordinates 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbinim_1_1BinImage_a0a332dd5ac1eb27cb1c698c27d40acf5}\label{classbinim_1_1BinImage_a0a332dd5ac1eb27cb1c698c27d40acf5}} 
+\mbox{\Hypertarget{classbinim_1_1BinImage_ac40c51412363b281fc0c89f5605badb2}\label{classbinim_1_1BinImage_ac40c51412363b281fc0c89f5605badb2}} 
 \index{binim::BinImage@{binim::BinImage}!operator()@{operator()}}
 \index{operator()@{operator()}!binim::BinImage@{binim::BinImage}}
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily bool binim\+::\+Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{a,  }\item[{const int}]{b }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool binim\+::\+Bin\+Image\+::operator() (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const int}]{j }\end{DoxyParamCaption}) const}
 
 Access operator 
 \begin{DoxyParams}[1]{Parameters}
