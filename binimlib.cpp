@@ -9,6 +9,31 @@
 
 namespace binim
 {
+    void Swap(BinImage& a, BinImage& b)
+    {
+        log("Special  swap!\n");
+        BinImage a1;
+        log("Image 'a1' is created!\n");
+        a1.data = a.data;
+        a1.height = a.height;
+        a1.width = a.width;
+        a1.cache_coefficient = a.cache_coefficient;
+        a1.is_image_changed = a.is_image_changed;
+        a.data = b.data;
+        a.height = b.height;
+        a.width = b.width;
+        a.cache_coefficient = b.cache_coefficient;
+        a.is_image_changed = b.is_image_changed;
+
+        b.data = a1.data;
+        b.height = a1.height;
+        b.width = a1.width;
+        b.cache_coefficient = a1.cache_coefficient;
+        b.is_image_changed = a1.is_image_changed;
+
+        a1.data = nullptr;
+        log("Image 'a1' is being deleted!\n");
+    }
     void enable_logging()
     {
         trace = true;
@@ -99,11 +124,12 @@ namespace binim
         width = new_width;
         data = new bool[height * width];
     }
-    int BinImage::count_true() const
+    int count_true(const BinImage& a)
     {
         int z = 0;
-        for (int i = 0; i < height * width; i++)
-            if (data[i])
+        for (int i = 0; i < a._height(); i++)
+            for(int j=0; j< a._width(); j++)
+            if (a(i, j))
                 z += 1;
         return z;
     }
@@ -251,7 +277,7 @@ namespace binim
         log("Coefficient method!\n");
         if (is_image_changed)
         {
-            cache_coefficient = (double)count_true() / (height * width);
+            cache_coefficient = (double)count_true(*this) / (height * width);
             is_image_changed = false;
             log("Cache recalculated!\n");
         }
@@ -261,26 +287,30 @@ namespace binim
     BinImage& BinImage::operator=(const BinImage &b)
     {
         log("Copy assign overload!\n");
-        if (&b == this)
-            return *this;
-        is_image_changed = true;
-        resize(b._height(), b._width());
-        for (int i = 0; i < height; i++)
-            for (int j = 0; j < width; j++)
-                data[i * width + j] = b(i, j);
+        // if (&b == this)
+        //     return *this;
+        // is_image_changed = true;
+        // resize(b._height(), b._width());
+        // for (int i = 0; i < height; i++)
+        //     for (int j = 0; j < width; j++)
+        //         data[i * width + j] = b(i, j);
+        BinImage tmp(b);
+        Swap(*this, tmp);
         return *this;
     }
     BinImage& BinImage::operator=(BinImage &&b)
     {
         log("Move assign overload!\n");
-        if (&b == this)
-            return *this;
-        is_image_changed = true;
-        delete_image();
-        height = b._height();
-        width = b._width();
-        data = b.data;
-        b.data = nullptr;
+        // if (&b == this)
+        //     return *this;
+        // is_image_changed = true;
+        // delete_image();
+        // height = b._height();
+        // width = b._width();
+        // data = b.data;
+        // b.data = nullptr;
+        Swap(*this, b);
+        log("Image 'b' is being deleted!\n");
         return *this;
     }
     std::ostream &operator<<(std::ostream &os, const BinImage &a)

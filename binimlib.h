@@ -44,6 +44,9 @@ namespace binim
     int count_char(const char c, const char *s);
     /// \return True if 'n' is in interval ['left', 'right']
     int int_in(const int n, const int left, const int right);
+    class BinImage;
+    /// \return Amount of true values in image
+    int count_true(const BinImage& a);
     /// Binary image class
     class BinImage
     {
@@ -65,8 +68,7 @@ namespace binim
         void create_image(const int new_height, const int new_width);
 
     public:
-        /// \return Amount of true values in image
-        int count_true() const;
+        
         /**
          * Fill image with some value
          * \param[in] fill Fill value
@@ -127,6 +129,9 @@ namespace binim
         BinImage &operator=(const BinImage &b);
         /// Move assignment operator overload
         BinImage &operator=(BinImage &&b);
+
+        /// My own swap
+        friend void Swap(BinImage& a, BinImage& b);
     };
     /// Output operator overload
     std::ostream &operator<<(std::ostream &os, const BinImage &a);
